@@ -30,32 +30,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Section names mapping
     const SECTIONS = {
         '1': 'MATTHEW', '2': 'MARK', '3': 'LUKE', '4': 'JOHN', '5': 'ACTS',
-        '7': 'GENESIS', '8': 'EXODUS', '9': 'LEVITICUS', '10': 'NUMBERS'
+        '6': 'ROMANS', '7': 'GENESIS', '8': 'EXODUS', '9': 'LEVITICUS', '10': 'NUMBERS'
     };
 
-    // Initialize sample data
-
-    // Update statistics
     // Filter students
     window.filterStudents = function() {
         const searchTerm = document.getElementById('studentSearch').value.toLowerCase();
         const gradeFilter = document.getElementById('gradeFilter').value;
         const genderFilter = document.getElementById('genderFilter').value;
         
-        const students = JSON.parse(localStorage.getItem('absas_students') || '[]');
+        // Get all table rows
+        const rows = document.querySelectorAll('#studentsTableBody tr');
         
-        const filtered = students.filter(s => {
-            const matchesSearch = !searchTerm || 
-                (s.firstName + ' ' + s.lastName).toLowerCase().includes(searchTerm) || 
-                s.id.toLowerCase().includes(searchTerm) ||
-                (s.lrn && s.lrn.includes(searchTerm));
-            const matchesGrade = !gradeFilter || s.grade === gradeFilter;
-            const matchesGender = !genderFilter || s.sex === genderFilter;
+        rows.forEach(row => {
+            const studentId = row.cells[0]?.textContent.toLowerCase() || '';
+            const lrn = row.cells[1]?.textContent.toLowerCase() || '';
+            const name = row.cells[2]?.textContent.toLowerCase() || '';
+            const grade = row.cells[3]?.textContent || '';
+            const gender = row.cells[4]?.textContent || '';
             
-            return matchesSearch && matchesGrade && matchesGender;
+            const matchesSearch = !searchTerm || 
+                studentId.includes(searchTerm) || 
+                lrn.includes(searchTerm) || 
+                name.includes(searchTerm);
+            
+            const matchesGrade = !gradeFilter || grade.includes(gradeFilter);
+            const matchesGender = !genderFilter || gender.includes(genderFilter);
+            
+            if (matchesSearch && matchesGrade && matchesGender) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         });
 
-        displayStudents(filtered);
         updateTableTitle(gradeFilter, genderFilter);
     };
 
@@ -72,110 +80,112 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('tableTitle').innerHTML = `<i class="fas fa-users"></i> ${title}`;
     }
 
-    // Display students
-    // Load all students
-
-    // Open modal for add/edit
-    window.openStudentModal = function(studentData = null) {
+    // Open modal for add student
+    window.openStudentModal = function() {
         const modal = document.getElementById('studentModal');
         const form = document.getElementById('studentForm');
         const title = document.getElementById('studentModalTitle');
+        
+        form.reset();
+        title.innerHTML = '<i class="fas fa-user-plus"></i> Add Student';
         modal.classList.add('active');
     };
-
 
     window.closeStudentModal = function() {
         document.getElementById('studentModal').classList.remove('active');
     };
 
+    // Edit Modal - Fetch student data and populate form
     window.EditModal = function(studentId) {
+        fetch("get-student.php?id=" + studentId)
+            .then(res => res.json())
+            .then(data => {
+                const modal = document.getElementById('EditModal');
+                const form = document.getElementById('studentForm1');
+                const title = document.getElementById('studentModalTitle1');
 
-    fetch("get-student.php?id=" + studentId)
-        .then(res => res.json())
-        .then(data => {
+                title.innerHTML = '<i class="fas fa-edit"></i> Edit Student';
 
-            const modal = document.getElementById('EditModal');
-            const form = document.getElementById('studentForm1');
-            const title = document.getElementById('studentModalTitle1');
+                // Populate form fields
+                form.querySelector('#edit_studentId').value = data.Student_ID || '';
+                form.querySelector('#edit_lrn').value = data.LRN_ID || '';
+                form.querySelector('#edit_firstName').value = data.Student_First_Name || '';
+                form.querySelector('#edit_lastName').value = data.Student_Last_Name || '';
+                form.querySelector('#edit_middleName').value = data.Student_Middle_Name || '';
+                form.querySelector('#edit_grade').value = data.Student_Grade_Level || '';
+                form.querySelector('#edit_enrollDate').value = data.Student_Enrollment_Date || '';
+                form.querySelector('#edit_sex').value = data.Student_Gender || '';
+                form.querySelector('#edit_age').value = data.Student_Age || '';
+                form.querySelector('#edit_birthday').value = data.Student_BirthDate || '';
+                form.querySelector('#edit_phone').value = data.Student_Contact || '';
+                form.querySelector('#edit_email').value = data.Student_Email || '';
+                form.querySelector('#edit_Epass').value = data.Student_Password || '';
+                form.querySelector('#edit_guardian').value = data.Student_Guardian_Name || '';
+                form.querySelector('#edit_guardianContact').value = data.Student_Guardian_Contact || '';
+                form.querySelector('#edit_address').value = data.Student_Home_Address || '';
 
-            title.innerHTML = '<i class="fas fa-edit"></i> Edit Student';
-
-            // Fill form fields with data
-            form.id.value = data.Student_ID;
-            form.lrn.value = data.LRN_ID;
-            form.firstName.value = data.Student_First_Name;
-            form.lastName.value = data.Student_Last_Name;
-            form.middleName.value = data.Student_Middle_Name;
-            form.grade.value = data.Student_Grade_Level;
-            form.enrollDate.value = data.Student_Enrollment_Date;
-            form.sex.value = data.Student_Gender;
-            form.age.value = data.Student_Age;
-            form.birthday.value = data.Student_BirthDate;
-            form.phone.value = data.Student_Contact;
-            form.email.value = data.Student_Email;
-            form.Epass.value = data.Student_Password;
-            form.guardian.value = data.Student_Guardian_Name;
-            form.guardianContact.value = data.Student_Guardian_Contact;
-            form.address.value = data.Student_Home_Addredd;
-
-            modal.classList.add('active');
-        });
-};
-
+                modal.classList.add('active');
+            })
+            .catch(error => {
+                console.error('Error fetching student data:', error);
+                alert('Error loading student data. Please try again.');
+            });
+    };
 
     window.closeStudentModal1 = function() {
         document.getElementById('EditModal').classList.remove('active');
     };
 
-    // Save student
-
-    
     // View student details
+    window.viewStudent = function(id) {
+        // Implementation for viewing student details
+        alert('View student details feature - ID: ' + id);
+    };
 
     window.closeViewModal = function() {
         document.getElementById('viewStudentModal').classList.remove('active');
     };
 
-    // Edit student
-    window.editStudent = function(id) {
-        const students = JSON.parse(localStorage.getItem('absas_students') || '[]');
-        const student = students.find(s => s.id === id);
-        if (student) {
-            openStudentModal(student);
-        }
-    };
-
     // Delete student
     window.deleteStudent = function(id) {
-        const students = JSON.parse(localStorage.getItem('absas_students') || '[]');
-        const student = students.find(s => s.id === id);
-        
-        if (!student) return;
-        
-        if (confirm(`Are you sure you want to delete ${student.firstName} ${student.lastName}?\n\nThis will remove all associated records including attendance and grades.`)) {
-            const filtered = students.filter(s => s.id !== id);
-            localStorage.setItem('absas_students', JSON.stringify(filtered));
-            loadStudents();
-            filterStudents();
+        if (confirm('Are you sure you want to delete this student? This action cannot be undone.')) {
+            // Implement delete functionality
+            alert('Delete functionality needs to be implemented with PHP backend');
         }
     };
 
-    // Export to Excel (simplified)
+    // Export to Excel
     window.exportToExcel = function() {
-        const students = JSON.parse(localStorage.getItem('absas_students') || '[]');
+        const table = document.getElementById('studentsTableBody');
+        const rows = Array.from(table.querySelectorAll('tr')).filter(row => row.style.display !== 'none');
         
-        if (students.length === 0) {
+        if (rows.length === 0) {
             alert('No students to export');
             return;
         }
 
-        let csv = 'Student ID,LRN,First Name,Last Name,Grade,Section,Gender,Age,Email,Phone,Address,Guardian,Guardian Contact,Enrollment Date,Status\n';
+        let csv = 'Student ID,LRN,First Name,Last Name,Grade,Section,Gender,Age,Guardian,Contact\n';
         
-        students.forEach(s => {
-            csv += `${s.id},${s.lrn || ''},${s.firstName},${s.lastName},${s.grade},${SECTIONS[s.grade]},${s.sex},${s.age},${s.email || ''},${s.phone || ''},${s.address},${s.guardian},${s.guardianContact || ''},${s.enrollDate},${s.status}\n`;
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length > 0) {
+                const rowData = [
+                    cells[0]?.textContent.trim() || '',
+                    cells[1]?.textContent.trim() || '',
+                    cells[2]?.textContent.trim() || '',
+                    cells[2]?.textContent.trim() || '',
+                    cells[3]?.textContent.trim() || '',
+                    '',
+                    cells[4]?.textContent.trim() || '',
+                    cells[5]?.textContent.trim() || '',
+                    cells[6]?.textContent.trim() || '',
+                    cells[7]?.textContent.trim() || ''
+                ];
+                csv += rowData.map(field => `"${field}"`).join(',') + '\n';
+            }
         });
 
-        const blob = new Blob([csv], { type: 'text/csv' });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -184,7 +194,17 @@ document.addEventListener('DOMContentLoaded', function() {
         window.URL.revokeObjectURL(url);
     };
 
-    // Initialize
-    initializeData();
-    loadStudents();
+    // Add CSS for section headers
+    const style = document.createElement('style');
+    style.textContent = `
+        .section-title {
+            color: var(--maroon);
+            margin: 20px 0 15px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    `;
+    document.head.appendChild(style);
 });
