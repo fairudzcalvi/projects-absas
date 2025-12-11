@@ -1,0 +1,81 @@
+
+.grading-period-tabs { display:flex; gap:12px; align-items:center; }
+
+.grading-period-tabs .period-tab {
+  background:#f5f5f5;
+  border:1px solid #eee;
+  padding:10px 18px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+.grading-period-tabs .period-tab.active {
+  background:var(--maroon);
+  color:#fff;
+  box-shadow:0 6px 14px rgba(0,0,0,0.06);
+}
+
+.card { border-radius:12px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.04); margin-bottom:20px; }
+.card-header { padding:18px 22px; border-bottom:1px solid rgba(0,0,0,0.03); }
+.card > .content { padding:20px; }
+
+.filter-select, .search-input {
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:2px solid #eee;
+  background:#fff;
+  font-size:15px;
+}
+.filter-select:focus, .search-input:focus { border-color: #f0c84a; box-shadow:0 2px 8px rgba(240,200,74,0.12); }
+
+.data-table { width:100%; border-collapse:collapse; }
+.data-table th { text-align:left; padding:12px 10px; border-bottom:2px solid var(--maroon); color:var(--maroon); font-weight:700; }
+.data-table td { padding:12px 10px; border-bottom:1px solid #eee; vertical-align:middle; }
+
+.grade-input { width:96px; padding:8px; border-radius:8px; border:1px solid #ddd; text-align:center; }
+.save-btn { background:var(--maroon); color:#fff; padding:10px 18px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
+/* --- Quarter Buttons Upgrade --- */
+
+.grading-period-tabs {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.period-tab {
+    background: #f4f4f4;
+    border: 2px solid #e8e8e8;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* hover effect */
+.period-tab:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    border-color: var(--gold);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* active quarter button */
+.period-tab.active {
+    background: var(--maroon);
+    color: #fff;
+    border-color: var(--maroon);
+    box-shadow: 0 6px 20px rgba(125, 12, 12, 0.35);
+    transform: translateY(-2px);
+}
+
+/* optional: icon styling */
+.period-tab i {
+    font-size: 18px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Login – ABSAS-SIMS</title>
+
+    <!-- Google Fonts + Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background: #7d0c0c;
+        padding: 40px;
+      }
+      .login-box {
+        width: 450px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px 35px;
+        border-radius: 15px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+        animation: fadeInUp 0.6s ease;
+      }
+      .logo-img {
+        width: 140px;
+        height: 140px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto 15px;
+      }
+      .title {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+        color: #7d0c0c;
+      }
+      .subtitle {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #666;
+      }
+      .input-box {
+        margin-bottom: 20px;
+      }
+      .input-box label {
+        font-weight: 600;
+        color: #7d0c0c;
+      }
+      .input-field {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        margin-top: 5px;
+        font-size: 15px;
+        transition: 0.3s;
+      }
+      .input-field:focus {
+        border-color: #d6a83b;
+        box-shadow: 0 0 0 3px rgba(214, 168, 59, 0.25);
+      }
+      .login-btn {
+        width: 100%;
+        padding: 13px;
+        background: #7d0c0c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .login-btn:hover {
+        background: #5a0000;
+      }
+      .error-msg {
+        color: red;
+        font-size: 13px;
+        text-align: center;
+        margin-bottom: 15px;
+        min-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <img src="ABSAS LOGO.jpg" class="logo-img" />
+
+      <h2 class="title">A.B. Simpson Alliance School</h2>
+      <p class="subtitle">Teacher Login Portal</p>
+
+      <p class="error-msg" id="errorMsg"></p>
+
+      <div class="input-box">
+        <label>Email/Username</label>
+        <input
+          type="text"
+          id="username"
+          class="input-field"
+          placeholder="Enter your username"
+          required
+        />
+        <span class="error-message" id="usernameError"></span>
+      </div>
+
+      <div class="input-box">
+        <label>Password</label>
+        <input
+          type="password"
+          id="password"
+          class="input-field"
+          placeholder="Enter your password"
+          required
+        />
+        <span class="error-message" id="usernameError"></span>
+      </div>
+
+      <button class="login-btn" onclick="teacherLogin()">Login</button>
+    </div>
+
+    <script src="teacher-login.js"></script>
+    <div
+      style="
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: #fff;
+        padding: 10px;
+        border: 2px solid var(--maroon);
+        border-radius: 8px;
+        font-size: 12px;
+      "
+    >
+      <strong>Default Login:</strong><br />
+      Username: <code>admin</code><br />
+      Password: <code>admin123</code>
+    </div>
+  </body>
+</html>

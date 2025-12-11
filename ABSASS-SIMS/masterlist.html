@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master List - ABSAS-SIMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        @media print {
+            .sidebar, .top-header, .no-print, .btn { display: none !important; }
+            .main-content { margin-left: 0 !important; }
+            .card { box-shadow: none !important; page-break-inside: avoid; }
+            body { background: white !important; }
+        }
+        .master-list-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 3px solid var(--maroon);
+        }
+        .master-list-header h2 {
+            color: var(--maroon);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .master-list-header h3 {
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .master-list-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>ABSAS-SIMS</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="text">Overview</span>
+                </a>
+                <a href="students.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-user-graduate"></i></span>
+                    <span class="text">Student Records</span>
+                </a>
+                <a href="faculty.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                    <span class="text">Faculty Records</span>
+                </a>
+                <a href="masterlist.html" class="nav-item active">
+                    <span class="icon"><i class="fas fa-list-alt"></i></span>
+                    <span class="text">Master List</span>
+                </a>
+                <a href="schedules.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                    <span class="text">Class Schedules</span>
+                </a>
+                <a href="attendance.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-clipboard-check"></i></span>
+                    <span class="text">Attendance</span>
+                </a>
+                <a href="grades.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-file-alt"></i></span>
+                    <span class="text">Grading</span>
+                </a>
+                <a href="transcripts.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-scroll"></i></span>
+                    <span class="text">Transcripts</span>
+                </a>
+                <a href="finance.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="text">Finance</span>
+                </a>
+                <a href="files.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-folder-open"></i></span>
+                    <span class="text">File Management</span>
+                </a>
+                </a>
+                <a href="settings.html" class="nav-item">
+                <span class="icon"><i class="fas fa-cog"></i></span>
+                <span class="text">Settings</span>
+                </a>
+            </nav>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfoSidebar">
+                    <p class="user-name">Loading...</p>
+                    <p class="user-role">Administrator</p>
+                </div>
+                <button class="logout-btn-sidebar" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="top-header">
+                <h1><i class="fas fa-list-alt"></i> Master List Generator</h1>
+                <div class="header-actions">
+                    <span class="date-time" id="dateTime"></span>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <!-- Generator Section -->
+                <div class="card no-print">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fas fa-cogs"></i> Generate Master List</h2>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div class="form-grid">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>Grade Level *</label>
+                                <select class="filter-select" id="gradeSelect" required>
+                                    <option value="">Select Grade Level</option>
+                                    <option value="1">Grade 1 - MATTHEW</option>
+                                    <option value="2">Grade 2 - MARK</option>
+                                    <option value="3">Grade 3 - LUKE</option>
+                                    <option value="4">Grade 4 - JOHN</option>
+                                    <option value="5">Grade 5 - ACTS</option>
+                                    <option value="7">Grade 7 - GENESIS</option>
+                                    <option value="8">Grade 8 - EXODUS</option>
+                                    <option value="9">Grade 9 - LEVITICUS</option>
+                                    <option value="10">Grade 10 - NUMBERS</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>Gender Filter</label>
+                                <select class="filter-select" id="genderSelect">
+                                    <option value="">All Students</option>
+                                    <option value="Male">Male Students Only</option>
+                                    <option value="Female">Female Students Only</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0; display: flex; align-items: flex-end;">
+                                <button class="btn btn-primary" onclick="generateMasterList()" style="width: 100%;">
+                                    <i class="fas fa-list"></i> Generate List
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid no-print" id="statsSection" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="totalCount">0</div>
+                            <div class="stat-label">Total Students</div>
+                        </div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-icon">
+                            <i class="fas fa-male"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="maleCount">0</div>
+                            <div class="stat-label">Male</div>
+                        </div>
+                    </div>
+                    <div class="stat-card gold">
+                        <div class="stat-icon">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="femaleCount">0</div>
+                            <div class="stat-label">Female</div>
+                        </div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="activeCount">0</div>
+                            <div class="stat-label">Active</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Master List Display -->
+                <div class="card" id="masterListCard" style="display: none;">
+                    <div class="card-header no-print">
+                        <h2 class="card-title" id="listTitle">Master List</h2>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="window.print()">
+                                <i class="fas fa-print"></i> Print
+                            </button>
+                            <button class="btn btn-success" onclick="exportMasterList()">
+                                <i class="fas fa-file-excel"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 30px;" id="printableArea">
+                        <!-- Printable Header -->
+                        <div class="master-list-header">
+                            <h2>A.B. Simpson Alliance School</h2>
+                            <h3 id="listTitlePrint">Master List</h3>
+                            <div class="master-list-info">
+                                <div><strong>School Year:</strong> 2024-2025</div>
+                                <div><strong>Date Generated:</strong> <span id="dateGenerated"></span></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr style="border-bottom: 1px solid #ddd;">
+                                    <td style="padding: 8px;"><strong>Grade & Section:</strong></td>
+                                    <td style="padding: 8px;" id="gradeSectionInfo"></td>
+                                    <td style="padding: 8px;"><strong>Adviser:</strong></td>
+                                    <td style="padding: 8px;" id="adviserInfo"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px;"><strong>Total Students:</strong></td>
+                                    <td style="padding: 8px;" id="totalStudentsInfo"></td>
+                                    <td style="padding: 8px;"><strong>Gender Filter:</strong></td>
+                                    <td style="padding: 8px;" id="genderFilterInfo"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="data-table" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40px;">No.</th>
+                                        <th style="width: 100px;">LRN</th>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                        <th style="width: 80px;">Gender</th>
+                                        <th style="width: 60px;">Age</th>
+                                        <th>Parent/Guardian</th>
+                                        <th style="width: 120px;">Contact Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="masterListBody">
+                                    <!-- Content will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Signature Section for Print -->
+                        <div style="margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+                            <div style="text-align: center;">
+                                <div style="border-top: 2px solid #000; padding-top: 10px; margin-top: 40px;">
+                                    <strong>Class Adviser</strong>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="border-top: 2px solid #000; padding-top: 10px; margin-top: 40px;">
+                                    <strong>School Registrar</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="card" id="emptyState">
+                    <div style="padding: 60px; text-align: center; color: #666;">
+                        <i class="fas fa-clipboard-list" style="font-size: 64px; opacity: 0.3; margin-bottom: 20px; display: block;"></i>
+                        <h3 style="margin-bottom: 10px; color: var(--maroon);">No Master List Generated</h3>
+                        <p>Select a grade level and click "Generate List" to create a master list.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="masterlist.js"></script>
+</body>
+</html>

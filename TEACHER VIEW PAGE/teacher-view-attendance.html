@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teacher - Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="teacher-grades.css">
+</head>
+<body class="dashboard-page">
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>ABSAS-SIMS</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher-view-students.html" class="nav-item">
+                <span class="icon"><i class="fas fa-user-graduate"></i></span>
+                <span class="text">Class List</span>
+            </a>
+            <a href="teacher-view-attendance.html" class="nav-item active">
+                <span class="icon"><i class="fas fa-clipboard-check"></i>
+                </span><span class="text">Students Attendance</span>
+            </a>
+            <a href="teacher-view-grades.html" class="nav-item">
+                <span class="icon"><i class="fas fa-file-alt"></i>
+                </span><span class="text">Students Grades</span>
+            </a>
+        </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info" id="userInfoSidebar">
+            <p><strong id="sidebarName">My Portal</strong><br><small>ABSAS-SIMS Teacher</small></p>
+                <button class="logout-btn-sidebar" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+                <h1><i class="fas fa-clipboard-check"></i> Attendance Reports</h1>
+                <div class="header-actions">
+                    <span class="date-time" id="dateTime"></span>
+                </div>
+            </header>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Daily Attendance</h2>
+                </div>
+
+                <div class="attendance-top">
+                    <div class="input-group">
+                        <label for="attendanceDate">Date</label>
+                        <input type="date" id="attendanceDate" class="input">
+                    </div>
+                   <div class="input-group">
+                        <label for="attendanceClass">Class</label>
+                         <select id="attendanceClass" class="input">
+                            <option value="">Select Grade...</option>
+                            <option value="1">Grade 1 - MATTHEW</option>
+                            <option value="2">Grade 2 - MARK</option>
+                            <option value="3">Grade 3 - LUKE</option>
+                            <option value="4">Grade 4 - JOHN</option>
+                            <option value="5">Grade 5 - ACTS</option>
+                            <option value="6">Grade 6 - ROMANS</option>
+                            <option value="7">Grade 7 - GENESIS</option>
+                            <option value="8">Grade 8 - EXODUS</option>
+                            <option value="9">Grade 9 - LEVITICUS</option>
+                            <option value="10">Grade 10 - NUMBERS</option>
+                        </select>
+                    </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                            <th>Late</th>
+                            <th>Excused</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceBody">
+                        <tr>
+                            <td colspan="5" style="text-align:center; padding:15px;">No students loaded.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="attendance-actions">
+                    <button id="submitAttendance" class="btn-main">Submit Attendance</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    </div>
+<script src="teacher-view-attendance.js"></script>
+</body>
+</html>

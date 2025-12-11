@@ -1,0 +1,149 @@
+
+      .attendance-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .att-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 18px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-left: 6px solid var(--maroon);
+      }
+      .att-card .value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--maroon);
+      }
+      .att-card .label {
+        color: #666;
+        font-size: 13px;
+      }
+      .calendar-wrap {
+        background: var(--white);
+        padding: 18px;
+        border-radius: 10px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+        margin-bottom: 18px;
+      }
+      .month-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .month-select {
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: #fff;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+      }
+      .day-name {
+        text-align: center;
+        font-weight: 600;
+        padding: 8px 6px;
+        background: #fafafa;
+        border-radius: 6px;
+        color: var(--maroon);
+      }
+      .day-cell {
+        min-height: 74px;
+        padding: 8px;
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid #f0f0f0;
+        position: relative;
+      }
+      .day-number {
+        font-weight: 600;
+        color: #333;
+        font-size: 13px;
+      }
+      .status-badge {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 12px;
+        color: #fff;
+      }
+      .present {
+        background: #28a745;
+      }
+      .absent {
+        background: #dc3545;
+      }
+      .late {
+        background: #ff8c00;
+        color: #111;
+      }
+      .legend {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .legend .item {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        font-size: 13px;
+        color: #555;
+      }
+      .legend .swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .table-card {
+        background: var(--white);
+        padding: 18px;
+        border-radius: 10px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+      }
+      .month-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+      .month-table th {
+        background: var(--light-gray);
+        color: var(--maroon);
+        padding: 10px;
+        text-align: left;
+      }
+      .month-table td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+      .small-muted {
+        color: #666;
+        font-size: 13px;
+      }
+      @media (max-width: 900px) {
+        .attendance-top {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }

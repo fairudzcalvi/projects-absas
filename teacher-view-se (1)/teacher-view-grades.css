@@ -1,0 +1,370 @@
+
+/* Grading Period Tabs */
+.grading-period-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.period-tab {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px 20px;
+    background: var(--light-gray);
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.period-tab:hover {
+    background: var(--white);
+    border-color: var(--gold);
+    color: var(--maroon);
+    transform: translateY(-2px);
+}
+
+.period-tab.active {
+    background: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.3);
+}
+
+.period-tab.active i {
+    color: var(--gold);
+}
+
+/* Grades Table */
+.grades-table {
+    font-size: 14px;
+}
+
+.grades-table th {
+    position: sticky;
+    top: 0;
+    background: var(--maroon);
+    color: var(--white);
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.grades-table td {
+    padding: 10px 8px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.grades-table .student-info {
+    text-align: left;
+    font-weight: 500;
+    color: var(--maroon);
+    white-space: nowrap;
+}
+
+.grades-table .student-id {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    font-weight: 400;
+}
+
+/* Grade Cell Styling */
+.grade-cell {
+    font-weight: 600;
+    padding: 8px;
+    border-radius: 6px;
+    display: inline-block;
+    min-width: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.grade-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.grade-cell.outstanding {
+    background: #d4edda;
+    color: #155724;
+}
+
+.grade-cell.very-satisfactory {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.grade-cell.satisfactory {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.grade-cell.fairly-satisfactory {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.grade-cell.did-not-meet {
+    background: #f5c6cb;
+    color: #721c24;
+    font-weight: 700;
+}
+
+.grade-cell.no-grade {
+    background: #f0f0f0;
+    color: #999;
+    font-style: italic;
+}
+
+/* Average Column */
+.average-cell {
+    background: var(--light-gray);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--maroon);
+}
+
+/* Grade Legend */
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.legend-box {
+    width: 80px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 13px;
+}
+
+.legend-box.outstanding {
+    background: #d4edda;
+    color: #155724;
+}
+
+.legend-box.very-satisfactory {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.legend-box.satisfactory {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.legend-box.fairly-satisfactory {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.legend-box.did-not-meet {
+    background: #f5c6cb;
+    color: #721c24;
+}
+
+/* Grade Details in Modal */
+.grade-details-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grade-section {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--maroon);
+}
+
+.grade-section h4 {
+    color: var(--maroon);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grade-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.grade-row:last-child {
+    margin-bottom: 0;
+}
+
+.grade-label {
+    font-weight: 500;
+    color: #666;
+}
+
+.grade-value {
+    font-weight: 600;
+    color: var(--maroon);
+    text-align: right;
+}
+
+.grade-value.large {
+    font-size: 24px;
+}
+
+/* Subject Header */
+.subject-header {
+    background: var(--gold);
+    color: var(--maroon);
+    font-weight: 700;
+    padding: 10px;
+}
+
+/* Remarks */
+.remarks-box {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    margin-top: 10px;
+}
+
+.remarks-box label {
+    display: block;
+    font-weight: 600;
+    color: var(--maroon);
+    margin-bottom: 8px;
+}
+
+.remarks-box textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    resize: vertical;
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .top-header,
+    .no-print,
+    .btn,
+    .modal,
+    .card:not(.grades-card) {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    .grades-table {
+        font-size: 10px;
+    }
+
+    .grades-table th,
+    .grades-table td {
+        padding: 6px 4px;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grading-period-tabs {
+        flex-direction: column;
+    }
+
+    .period-tab {
+        width: 100%;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .grades-table {
+        font-size: 12px;
+    }
+
+    .legend-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grade-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.loading-state i {
+    font-size: 48px;
+    color: var(--maroon);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.complete {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.incomplete {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.pending {
+    background: #f8d7da;
+    color: #721c24;
+}

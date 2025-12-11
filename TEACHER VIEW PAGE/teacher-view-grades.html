@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teacher - Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="teacher-grades.css">
+</head>
+
+<body class="dashboard-page">
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header"><h2>ABSAS-SIMS</h2></div>
+      <nav class="sidebar-nav">
+        <a href="teacher-view-students.html" class="nav-item">
+            <span class="icon"><i class="fas fa-user-graduate"></i>
+            </span><span class="text">Class List</span>
+        </a>
+        <a href="teacher-view-attendance.html" class="nav-item">
+            <span class="icon"><i class="fas fa-clipboard-check"></i>
+            </span><span class="text">Students Attendance</span>
+        </a>
+        <a href="teacher-view-grades.html" class="nav-item active">
+            <span class="icon"><i class="fas fa-file-alt"></i>
+            </span><span class="text">Students Grades</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info" id="userInfoSidebar">
+            <p><strong id="sidebarName">My Portal</strong><br><small>ABSAS-SIMS Teacher</small></p>
+                <button class="logout-btn-sidebar" id="logoutBtn">
+                  <i class="fas fa-sign-out-alt"></i>Logout
+                </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1><i class="fas fa-file-alt"></i> Grading System</h1>
+        <div class="header-actions">
+          <span class="date-time" id="dateTime"></span>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title"><i class="fas fa-calendar-check"></i> Select Grading Period</h2></div>
+          <div style="padding:20px;">
+            <div class="grading-period-tabs">
+              <button class="period-tab active" data-period="1Q" onclick="selectPeriod('1Q')"><i class="fas fa-calendar-day"></i> 1st Quarter</button>
+              <button class="period-tab" data-period="2Q" onclick="selectPeriod('2Q')"><i class="fas fa-calendar-day"></i> 2nd Quarter</button>
+              <button class="period-tab" data-period="3Q" onclick="selectPeriod('3Q')"><i class="fas fa-calendar-day"></i> 3rd Quarter</button>
+              <button class="period-tab" data-period="4Q" onclick="selectPeriod('4Q')"><i class="fas fa-calendar-day"></i> 4th Quarter</button>
+              <button class="period-tab" data-period="FINAL" onclick="selectPeriod('FINAL')"><i class="fas fa-star"></i> Final Grade</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h2 class="card-title"><i class="fas fa-filter"></i> Filter Grades</h2></div>
+          <div style="padding:20px;">
+            <div class="form-grid">
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Grade Level</label>
+                <select class="filter-select" id="gradeFilter" onchange="loadGrades()"></select>
+              </div>
+
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Subject</label>
+                <select class="filter-select" id="subjectFilter" onchange="loadGrades()">
+                  <option value="">All Subjects</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Search Student</label>
+                <input type="text" class="search-input" id="studentSearch" placeholder="Search by name or ID..." oninput="loadGrades()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="emptyState">
+          <div style="padding:60px; text-align:center; color:#666;">
+            <i class="fas fa-clipboard-list" style="font-size:64px; opacity:0.3; margin-bottom:20px; display:block;"></i>
+            <h3 style="margin-bottom:10px; color:var(--maroon);">No Selection Made</h3>
+            <p>Please select a grade level and subject to view student grades.</p>
+          </div>
+        </div>
+
+        <div class="card" id="gradesCard" style="display:none;">
+          <div class="card-header">
+            <h2 class="card-title" id="gradesTitle">Student Grades</h2>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-secondary" onclick="exportGrades()"><i class="fas fa-file-excel"></i> Export</button>
+              <button class="btn btn-primary" onclick="printGrades()"><i class="fas fa-print"></i> Print</button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table grades-table">
+              <thead id="gradesTableHead"></thead>
+              <tbody id="gradesTableBody">
+                <tr><td colspan="20" class="empty-message">Loading grades...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="modal" id="gradeModal">
+          <div class="modal-content" style="max-width:800px;">
+            <div class="modal-header">
+              <h3 class="modal-title" id="gradeModalTitle"><i class="fas fa-edit"></i> Student Grade Details</h3>
+              <button class="modal-close" onclick="closeGradeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="gradeModalBody"></div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" onclick="closeGradeModal()"><i class="fas fa-times"></i> Close</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div> 
+<script src="teacher-view-grades.js"></script>
+</body>
+</html>
+

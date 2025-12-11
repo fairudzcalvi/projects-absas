@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABSAS-SIMS - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-css/styles.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-container">
+                <img src="ABSAS LOGO.jpg" alt="ABSAS Logo" class="school-logo">
+                <h1 class="system-title">A.B. Simpson Alliance School</h1>
+                <p class="system-subtitle">Student Information and Management System</p>
+            </div>
+            
+            <form id="loginForm" class="login-form" novalidate>
+                <div class="form-group">
+                    <label for="username">Username / Email</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Enter your username or email"
+                        required
+                    >
+                    <span class="error-message" id="usernameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password"
+                        required
+                    >
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span class="btn-text">Login</span>
+                    <span class="loader" style="display: none;"></span>
+                </button>
+                
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+    
+    <script src="admin-js/init-admin.js"></script>
+    <script src="admin-js/login.js"></script>
+    <div style="position: fixed; bottom: 10px; right: 10px; background: #fff; padding: 10px; border: 2px solid var(--maroon); border-radius: 8px; font-size: 12px;">
+        <strong>Default Login:</strong><br>
+        Username: <code>admin</code><br>
+        Password: <code>admin123</code>
+    </div>
+</body>
+</html>
